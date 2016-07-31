@@ -37,6 +37,6 @@ ehthumbs.db
 Thumbs.db
 
 #b
-*.iml
-.idea
-target
+/*.iml
+/.idea
+/target

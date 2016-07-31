@@ -11,23 +11,77 @@
     <properties>
         <jetty.version>9.3.11.v20160721</jetty.version>
         <jersey.version>2.23.1</jersey.version>
+        <jackson.version>2.7.4</jackson.version>
+        <log4j.version>1.2.17</log4j.version>
+        <junit.version>4.12</junit.version>
+        <jquery.version>3.0.0</jquery.version>
+        <bootstrap.version>3.3.7</bootstrap.version>
     </properties>
 
     <dependencies>
+        <!--Jetty-->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <!--Jersey-->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
             <version>${jersey.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
             <version>${jersey.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <!--Jackson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-base</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!--logging-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!--unit testing-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <!--Spring-->
+        <!--UI-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${bootstrap.version}</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -35,6 +89,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
+                    <!--<jettyXml>jetty.xml</jettyXml>-->
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/wagesystem</contextPath>
@@ -42,6 +97,15 @@
                     <httpConnector>
                         <port>8080</port>
                     </httpConnector>
+                    <contextHandlers>
+                        <contextHandler implementation="org.eclipse.jetty.server.handler.ContextHandler">
+                                <resourceBase>${project.basedir}/src/main/webapp/static</resourceBase>
+                                <!--<resourceBase>${project.basedir}/src/main/META-INF/</resourceBase>-->
+                                <!--<resourceBase>${project.basedir}/src/main/webapp/pages,${project.basedir}/src/main/webapp/META-INF</resourceBase>-->
+                                <!--<resourceBase>${project.basedir}/src/main/webapp/META-INF</resourceBase>-->
+                            <handler implementation="org.eclipse.jetty.server.handler.ResourceHandler"/>
+                        </contextHandler>
+                    </contextHandlers>
                 </configuration>
             </plugin>
         </plugins>
