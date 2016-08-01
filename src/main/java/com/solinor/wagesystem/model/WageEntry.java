@@ -1,61 +1,53 @@
 package com.solinor.wagesystem.model;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by yolan
  */
 public class WageEntry {
 
-    private String personName;
-    private int personId;
-    private String date;
-    private String start;
-    private String end;
+    private String name;
+    private int id;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
-    public WageEntry(String personName, int personId, String date, String start, String end) {
-        this.personName = personName;
-        this.personId = personId;
-        this.date = date;
+    public WageEntry(String name, int id, LocalDateTime start, LocalDateTime end) {
+        this.name = name;
+        this.id = id;
         this.start = start;
         this.end = end;
     }
 
-    public String getPersonName() {
-        return personName;
+    public String getName() {
+        return name;
     }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getId() {
+        return id;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 }

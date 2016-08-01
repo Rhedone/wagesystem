@@ -11,12 +11,12 @@
          $.ajax({
              type: "PUT",
              dataType: "text/plain",
-             url: "http://localhost:8080/wagesystem/introduce/"+evt.target.result,
+             url: "http://localhost:8080/wagesystem/introduce",
+             data:evt.target.result,
              success: function(data){
                 alert(data);
              }
          });
-//            document.getElementById("fileContents").innerHTML = evt.target.result;
         }
         reader.onerror = function (evt) {
             window.alert( "error reading file");

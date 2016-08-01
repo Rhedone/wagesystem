@@ -16,6 +16,7 @@
         <junit.version>4.12</junit.version>
         <jquery.version>3.0.0</jquery.version>
         <bootstrap.version>3.3.7</bootstrap.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,20 @@
             <version>${junit.version}</version>
         </dependency>
         <!--Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <!--UI-->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -89,7 +104,6 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
-                    <!--<jettyXml>jetty.xml</jettyXml>-->
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/wagesystem</contextPath>
@@ -99,10 +113,7 @@
                     </httpConnector>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.server.handler.ContextHandler">
-                                <resourceBase>${project.basedir}/src/main/webapp/static</resourceBase>
-                                <!--<resourceBase>${project.basedir}/src/main/META-INF/</resourceBase>-->
-                                <!--<resourceBase>${project.basedir}/src/main/webapp/pages,${project.basedir}/src/main/webapp/META-INF</resourceBase>-->
-                                <!--<resourceBase>${project.basedir}/src/main/webapp/META-INF</resourceBase>-->
+                            <resourceBase>${project.basedir}/src/main/webapp/static</resourceBase>
                             <handler implementation="org.eclipse.jetty.server.handler.ResourceHandler"/>
                         </contextHandler>
                     </contextHandlers>
