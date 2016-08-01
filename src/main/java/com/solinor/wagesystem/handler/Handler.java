@@ -1,9 +1,10 @@
 package com.solinor.wagesystem.handler;
 
-import com.solinor.wagesystem.calculator.WageCalculator;
+import com.solinor.wagesystem.calculation.WageCalculator;
 import com.solinor.wagesystem.model.InputWrapper;
 import com.solinor.wagesystem.model.WageEntry;
 import com.solinor.wagesystem.transformation.Transformer;
+import com.solinor.wagesystem.transformation.WagesToJsonTransformer;
 import com.solinor.wagesystem.validation.InputValidationException;
 import com.solinor.wagesystem.validation.InputValidator;
 import org.apache.log4j.Logger;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yolan
@@ -28,15 +31,18 @@ public class Handler {
 
     @Inject
     private WageCalculator calulator;
+//
+//    @Inject
+//    private WagesToJsonTransformer toJsonTransformer;
 
-    public String handle(InputWrapper input) throws InputValidationException {
+    public Map<String, BigDecimal> handle(InputWrapper input) throws InputValidationException {
         validator.validate(input);
         List<WageEntry> entries = transformer.transform(input);
         //todo sanity check differs from validate cause it contains business logic not just check whether its a valid csv
         //like are all vals from same month and are is start before end date, etc
-        calulator.calculate(entries);
-
-        return "derp";
+        Map<String, BigDecimal> wages = calulator.calculate(entries);
+        //String returnVal = toJsonTransformer.transform(wages);
+        return wages;
     }
 
 }

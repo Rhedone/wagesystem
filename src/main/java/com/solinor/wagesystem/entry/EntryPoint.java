@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * Created by yolan
@@ -21,14 +23,16 @@ public class EntryPoint {
     private Handler handler;
 
     @PUT
-    public void introduceWages(String input) {
+    public Map<String, BigDecimal> introduceWages(String input) {
         try {
             InputWrapper wrappedInput = new InputWrapper(input);
 
-            handler.handle(wrappedInput);
+            Map<String, BigDecimal> returnVal = handler.handle(wrappedInput);
+            return returnVal;
         } catch (InputValidationException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 }

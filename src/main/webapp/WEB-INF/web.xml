@@ -11,6 +11,10 @@
             <param-value>com.solinor.wagesystem.entry.ResourceConfiguration</param-value>
         </init-param>
         <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.mypackage.MyApplication</param-value>
+        </init-param>
+        <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
