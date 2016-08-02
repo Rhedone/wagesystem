@@ -94,7 +94,7 @@ public class WageCalculatorTest {
 
          Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
          assertTrue(totalPerEmployee.containsKey(2));
-        assertEquals(new BigDecimal("41.88"), totalPerEmployee.get(2).getWage());
+        assertEquals(new BigDecimal("41.68"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class WageCalculatorTest {
 
          Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
          assertTrue(totalPerEmployee.containsKey(2));
-        assertEquals(new BigDecimal("55.63"), totalPerEmployee.get(2).getWage());
+        assertEquals(new BigDecimal("55.23"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class WageCalculatorTest {
 
          Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
          assertTrue(totalPerEmployee.containsKey(2));
-        assertEquals(new BigDecimal("73.13"), totalPerEmployee.get(2).getWage());
+        assertEquals(new BigDecimal("72.53"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -127,6 +127,6 @@ public class WageCalculatorTest {
 
          Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
          assertTrue(totalPerEmployee.containsKey(2));
-        assertEquals(new BigDecimal("125.63"), totalPerEmployee.get(2).getWage());
+        assertEquals(new BigDecimal("187.2"), totalPerEmployee.get(2).getWage());
     }
 }

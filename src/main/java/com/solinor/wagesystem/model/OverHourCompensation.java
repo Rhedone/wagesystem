@@ -6,15 +6,15 @@ import java.math.BigDecimal;
  * Created by yolan
  */
 public class OverHourCompensation {
-    private int hours;
+    private BigDecimal hours;
     private BigDecimal compensationPercentage;
 
-    public OverHourCompensation(int hours, BigDecimal compensationPercentage) {
+    public OverHourCompensation(BigDecimal hours, BigDecimal compensationPercentage) {
         this.hours = hours;
         this.compensationPercentage = compensationPercentage;
     }
 
-    public int getHours() {
+    public BigDecimal getHours() {
         return hours;
     }
 
