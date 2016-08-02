@@ -1,5 +1,6 @@
 package com.solinor.wagesystem.calculation;
 
+import com.solinor.wagesystem.model.CalculatedWage;
 import com.solinor.wagesystem.model.WageEntry;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +23,16 @@ public class WageCalculator {
     private final LocalTime REGULAR_HOUR_END = LocalTime.of(18, 0);
     //todo assumption only round at end of calc
 
-    public Map<String, BigDecimal> calculate(List<WageEntry> entries) {
-        Map<String, BigDecimal> totalPerEmployee = new HashMap<String, BigDecimal>();
+    public Map<Integer, CalculatedWage> calculate(List<WageEntry> entries) {
+        Map<Integer, CalculatedWage> totalPerEmployee = new HashMap<Integer, CalculatedWage>();
         for (WageEntry we : entries) {
             BigDecimal dailyTotal = calculate(we);
-            if (totalPerEmployee.containsKey(we.getName())) {
-                BigDecimal employeeTotal = totalPerEmployee.get(we.getName());
-                BigDecimal sum = employeeTotal.add(dailyTotal);
-                totalPerEmployee.put(we.getName(), sum);
+            if (totalPerEmployee.containsKey(we.getId())) {
+                CalculatedWage cw = totalPerEmployee.get(we.getId());
+                cw.add(dailyTotal);
             } else {
-                totalPerEmployee.put(we.getName(), dailyTotal);
+                CalculatedWage cw= new CalculatedWage(we.getId(),we.getName(),dailyTotal);
+                totalPerEmployee.put(we.getId(), cw);
             }
         }
         return totalPerEmployee;

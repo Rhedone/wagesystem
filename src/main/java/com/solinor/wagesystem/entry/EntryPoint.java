@@ -1,5 +1,7 @@
 package com.solinor.wagesystem.entry;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solinor.wagesystem.handler.Handler;
 import com.solinor.wagesystem.model.InputWrapper;
 import com.solinor.wagesystem.validation.InputValidationException;
@@ -7,7 +9,11 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -22,17 +28,19 @@ public class EntryPoint {
     @Inject
     private Handler handler;
 
-    @PUT
-    public Map<String, BigDecimal> introduceWages(String input) {
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response introduceWages(String input) {
         try {
             InputWrapper wrappedInput = new InputWrapper(input);
 
-            Map<String, BigDecimal> returnVal = handler.handle(wrappedInput);
-            return returnVal;
-        } catch (InputValidationException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+            String s = handler.handle(wrappedInput);
 
+            return Response.ok().type(MediaType.APPLICATION_JSON).entity(s).build();
+
+        } catch (InputValidationException | JsonProcessingException e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
 }

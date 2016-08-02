@@ -1,5 +1,6 @@
 package com.solinor.wagesystem.calculation;
 
+import com.solinor.wagesystem.model.CalculatedWage;
 import com.solinor.wagesystem.model.WageEntry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,24 +33,24 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 6, 0), LocalDateTime.of(2014, 3, 2, 14, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get("Scott Scala"));
+        Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+        assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
     public void testWageCalculatorRegularHoursTwoEntries() {
         List<WageEntry> entries = new ArrayList<WageEntry>();
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 6, 0), LocalDateTime.of(2014, 3, 2, 14, 0));
-        WageEntry e1 = new WageEntry("Charlie CSharp", 2, LocalDateTime.of(2014, 3, 2, 6, 0), LocalDateTime.of(2014, 3, 2, 13, 0));
+        WageEntry e1 = new WageEntry("Charlie CSharp", 3, LocalDateTime.of(2014, 3, 2, 6, 0), LocalDateTime.of(2014, 3, 2, 13, 0));
         entries.add(e);
         entries.add(e1);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get("Scott Scala"));
-        assertTrue(totalPerEmployee.containsKey("Charlie CSharp"));
-        assertEquals(new BigDecimal("26.25"), totalPerEmployee.get("Charlie CSharp"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get(2).getWage());
+        assertTrue(totalPerEmployee.containsKey(3));
+        assertEquals(new BigDecimal("26.25"), totalPerEmployee.get(3).getWage());
     }
 
     @Test
@@ -58,9 +59,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 6, 30), LocalDateTime.of(2014, 3, 2, 14, 30));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("30.00"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -69,9 +70,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 5, 0), LocalDateTime.of(2014, 3, 2, 13, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("31.15"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("31.15"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -80,9 +81,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 11, 0), LocalDateTime.of(2014, 3, 2, 19, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("31.15"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("31.15"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -91,9 +92,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 10, 0), LocalDateTime.of(2014, 3, 2, 20, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("41.88"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("41.88"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -102,9 +103,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 10, 0), LocalDateTime.of(2014, 3, 2, 22, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("55.63"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("55.63"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -113,9 +114,9 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 10, 0), LocalDateTime.of(2014, 3, 3, 0, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("73.13"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("73.13"), totalPerEmployee.get(2).getWage());
     }
 
     @Test
@@ -124,8 +125,8 @@ public class WageCalculatorTest {
         WageEntry e = new WageEntry("Scott Scala", 2, LocalDateTime.of(2014, 3, 2, 10, 0), LocalDateTime.of(2014, 3, 3, 10, 0));
         entries.add(e);
 
-        Map<String, BigDecimal> totalPerEmployee = calculator.calculate(entries);
-        assertTrue(totalPerEmployee.containsKey("Scott Scala"));
-        assertEquals(new BigDecimal("125.63"), totalPerEmployee.get("Scott Scala"));
+         Map<Integer, CalculatedWage> totalPerEmployee = calculator.calculate(entries);
+         assertTrue(totalPerEmployee.containsKey(2));
+        assertEquals(new BigDecimal("125.63"), totalPerEmployee.get(2).getWage());
     }
 }

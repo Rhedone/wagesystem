@@ -8,11 +8,24 @@
 </head>
 <body>
 <div class="jumbotron text-center">
-    <h1> test</h1>
+   <h1>Wage calculator</h1>
 </div>
-<input type="file" id="files" name="files[]" multiple />
-<output id="fileContents"></output>
+<input type="file" id="files" name="files[]" multiple/>
+<div >
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Wage</th>
+        </tr>
+        </thead>
+        <tbody id="returnVal">
+        </tbody>
+    </table>
 
+</div>
+<div id="errorVal"></div>
 
 
 </body>

@@ -9,13 +9,18 @@
         reader.readAsText(file, "UTF-8");
         reader.onload = function (evt) {
          $.ajax({
-             type: "PUT",
-             dataType: "text/plain",
+             type: "POST",
+//             dataType: "application/json",
              url: "http://localhost:8080/wagesystem/introduce",
              data:evt.target.result,
              success: function(data){
-                alert(data);
-             }
+                $.each(data, function() {
+                    $("#returnVal").append(" <tr><td>"+ this.id +"</td><td>"+this.name +"</td><td>"+ this.wage  +"</td></tr>");
+                });
+             },
+            error: function( jqXHR, textStatus, errorThrown ){
+              alert(textStatus +"; "+errorThrown);
+            }
          });
         }
         reader.onerror = function (evt) {

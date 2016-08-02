@@ -1,6 +1,8 @@
 package com.solinor.wagesystem.handler;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.solinor.wagesystem.calculation.WageCalculator;
+import com.solinor.wagesystem.model.CalculatedWage;
 import com.solinor.wagesystem.model.InputWrapper;
 import com.solinor.wagesystem.model.WageEntry;
 import com.solinor.wagesystem.transformation.Transformer;
@@ -31,18 +33,18 @@ public class Handler {
 
     @Inject
     private WageCalculator calulator;
-//
-//    @Inject
-//    private WagesToJsonTransformer toJsonTransformer;
 
-    public Map<String, BigDecimal> handle(InputWrapper input) throws InputValidationException {
+    @Inject
+    private WagesToJsonTransformer toJsonTransformer;
+
+    public String handle(InputWrapper input) throws InputValidationException, JsonProcessingException {
         validator.validate(input);
         List<WageEntry> entries = transformer.transform(input);
         //todo sanity check differs from validate cause it contains business logic not just check whether its a valid csv
         //like are all vals from same month and are is start before end date, etc
-        Map<String, BigDecimal> wages = calulator.calculate(entries);
-        //String returnVal = toJsonTransformer.transform(wages);
-        return wages;
+        Map<Integer, CalculatedWage> wages = calulator.calculate(entries);
+        String returnVal = toJsonTransformer.transform(wages);
+        return returnVal;
     }
 
 }
