@@ -1,7 +1,7 @@
 package com.solinor.wagesystem.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.solinor.wagesystem.calculation.WageCalculator;
+import com.solinor.wagesystem.calculation.TotalWageCalculator;
 import com.solinor.wagesystem.model.CalculatedWage;
 import com.solinor.wagesystem.model.InputWrapper;
 import com.solinor.wagesystem.model.WageEntry;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class Handler {
     private Transformer transformer;
 
     @Inject
-    private WageCalculator calulator;
+    private TotalWageCalculator calulator;
 
     @Inject
     private WagesToJsonTransformer toJsonTransformer;

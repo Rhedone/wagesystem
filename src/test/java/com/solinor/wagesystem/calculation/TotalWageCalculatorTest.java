@@ -22,10 +22,10 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:context.xml")
-public class WageCalculatorTest {
+public class TotalWageCalculatorTest {
 
     @Inject
-    private WageCalculator calculator;
+    private TotalWageCalculator calculator;
 
     @Test
     public void testWageCalculatorRegularHoursOneEntry() {
