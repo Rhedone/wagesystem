@@ -18,9 +18,9 @@ public class OverTimeCompensationCalculator {
     private BigDecimal regularHourlyWage;
     private BigDecimal overHoursRemaining;
 
-    public OverTimeCompensationCalculator(int regularWorkHours, BigDecimal regularHourlyWage) {
+    public OverTimeCompensationCalculator(int regularWorkHours, String regularHourlyWage) {
         this.regularWorkHours = regularWorkHours;
-        this.regularHourlyWage = regularHourlyWage;
+        this.regularHourlyWage = new BigDecimal(regularHourlyWage);
     }
 
     public BigDecimal calculate(LocalDateTime start, LocalDateTime end) {

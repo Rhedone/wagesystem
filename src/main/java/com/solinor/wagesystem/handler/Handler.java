@@ -39,8 +39,6 @@ public class Handler {
     public String handle(InputWrapper input) throws InputValidationException, JsonProcessingException {
         validator.validate(input);
         List<WageEntry> entries = transformer.transform(input);
-        //todo sanity check differs from validate cause it contains business logic not just check whether its a valid csv
-        //like are all vals from same month and are is start before end date, etc
         Map<Integer, CalculatedWage> wages = calulator.calculate(entries);
         String returnVal = toJsonTransformer.transform(wages);
         return returnVal;

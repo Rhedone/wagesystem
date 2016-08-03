@@ -17,6 +17,7 @@
         <constructor-arg index="3" value="${regular.end.minutes}"/>
         <constructor-arg index="4" value="${regular.hourly.wage}"/>
     </bean>
+
     <bean id="EveningWorkWageCalculator" class="com.solinor.wagesystem.calculation.EveningWorkWageCalculator">
         <constructor-arg index="0" value="${regular.start.hour}"/>
         <constructor-arg index="1" value="${regular.start.minutes}"/>
@@ -25,6 +26,7 @@
         <constructor-arg index="4" value="${regular.hourly.wage}"/>
         <constructor-arg index="5" value="${evening.compensation}"/>
     </bean>
+
     <bean id="OverTimeCompensationCalculator" class="com.solinor.wagesystem.calculation.OverTimeCompensationCalculator">
         <constructor-arg index="0" value="${regular.work.hours}"/>
         <constructor-arg index="1" value="${regular.hourly.wage}"/>
